@@ -10,6 +10,8 @@ research_refreshed_at: "[MISSING]"
 target_generator: "[MISSING]"
 generator_model: "[MISSING]"
 generator_seed: "[MISSING]"
+generator_duration_control: "[MISSING — explicit UI/API length control, or text-prompt only? see references/prompt-best-practices.md]"
+trim_plan: "[MISSING — N/A if the generator hits the target length directly, otherwise: which section gets extracted and how]"
 music_rights_status: "[VERIFY]"
 prompt_sha256: "[GENERATE_AFTER_FINALIZATION]"
 selected_audio: "[NOT_GENERATED]"
@@ -83,7 +85,8 @@ Only fill this in if the target generator supports a separate negative-prompt fi
 - [ ] Passes a phone-speaker check
 - [ ] Loop or ending behaves as intended
 - [ ] Publish/commercial-use terms confirmed
-- [ ] Duration, codec, sample rate confirmed
+- [ ] Duration, codec, sample rate confirmed — measured on the actual file, not assumed from the prompt or generator default
+- [ ] If `trim_plan` isn't N/A, the trim/extract was actually done and re-measured
 - [ ] Final in-context preview approved separately from the raw audio
 
 ## Feedback and mutation

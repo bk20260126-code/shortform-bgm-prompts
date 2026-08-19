@@ -32,11 +32,12 @@ has_vo_or_tts: # yes/no — if yes, music must leave room for it
 desired_emotion: # 3-6 words, not one
 undesired_styles: # explicit exclusions, e.g. "not childish", "no dramatic strings"
 target_generator: # Suno / Udio / Google Lyria / other
+generator_duration_control: # does it have an explicit length UI/API control, or text-prompt only? see prompt-best-practices.md
 music_rights_status: # confirm before real generation, see below
 output_audio_path:
 ```
 
-`target_generator` and `music_rights_status` can stay unset while drafting the prompt, but resolve both before the user actually submits a generation.
+`target_generator` and `music_rights_status` can stay unset while drafting the prompt, but resolve both before the user actually submits a generation. Resolve `generator_duration_control` before writing the final prompt — it changes whether the prompt should target the real short duration directly or be structured for a trim/extract pass (see step 3).
 
 ### 2. Build the scene-to-cue map
 
@@ -46,9 +47,11 @@ If there is no fixed video timeline — a general-purpose loop bed, not tied to 
 
 ### 3. Write the prompt
 
-Read [`references/prompt-best-practices.md`](references/prompt-best-practices.md) before writing the actual sentences. It covers the structure most generators respond to, which generators support negative prompting and which don't, why a stated duration is a hint and not a guarantee, and a chat-session gotcha that silently turns a "new candidate" request into an edit of the last track.
+Read [`references/prompt-best-practices.md`](references/prompt-best-practices.md) before writing the actual sentences. It covers the structure most generators respond to, which generators support negative prompting and which don't, and a chat-session gotcha that silently turns a "new candidate" request into an edit of the last track.
 
-Copy [`assets/music-prompt-template.md`](assets/music-prompt-template.md) to the project as `MUSIC-PROMPT.md` and fill it in — this is the artifact of record, not the chat transcript. Every prompt needs: exact duration and purpose, 3-6 named emotions plus explicit exclusions, genre/BPM/key, 2-4 named instruments, a first-frame start condition, per-scene timecodes (if applicable), a caption-density rule, an ending/loop condition, and production requirements. Keep candidate log, evidence, and QA sections in the same file — a prompt that only exists in chat gets lost and re-researched from scratch next time.
+**Check the target generator's actual duration mechanism first — most song generators (Suno, Udio, Lyria/Flow Music) default toward a full song, not a short clip, and several can't go below ~30 seconds at all.** If the generator exposes an explicit duration control (slider, dropdown, API field), plan to set it there, not just in prompt text. If it doesn't, or the account/session isn't confirmed to honor it, write the prompt for a longer structured piece (verse/hook, per `scene-to-cue-system.md`) with the actual target section — usually the opening hook — as the part meant to be trimmed out afterward, and say so in the artifact so the trim step isn't a surprise later.
+
+Copy [`assets/music-prompt-template.md`](assets/music-prompt-template.md) to the project as `MUSIC-PROMPT.md` and fill it in — this is the artifact of record, not the chat transcript. Every prompt needs: exact duration and purpose, the generator's duration mechanism and whether a trim pass is planned, 3-6 named emotions plus explicit exclusions, genre/BPM/key, 2-4 named instruments, a first-frame start condition, per-scene timecodes (if applicable), a caption-density rule, an ending/loop condition, and production requirements. Keep candidate log, evidence, and QA sections in the same file — a prompt that only exists in chat gets lost and re-researched from scratch next time.
 
 ### 4. Generate candidates, one variable at a time
 

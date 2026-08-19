@@ -23,9 +23,27 @@ Most generators respond best to one natural-language paragraph in this order, no
 
 Check this table before reusing a negative-prompt block across generators — a block written for Udio's `--no` syntax does nothing on a generator that doesn't parse it, and vice versa.
 
-## Duration is a hint, not a guarantee
+## Duration: most generators default to a full song, not a short clip
 
-Official specs sometimes fix track length regardless of what the prompt asks for (e.g. one Lyria tier is documented as producing a fixed ~30-second track; a higher tier goes up to 3 minutes). A prompt asking for "20 seconds" may be silently ignored, with the actual short loop needing a separate trim/edit step after generation. Always measure the real output length before treating a duration request as satisfied — don't assume the prompt controlled it.
+Song generators (Suno, Udio, Google Lyria/Flow Music) are built around producing a complete track with a verse/chorus structure. That shapes two separate problems, and they need separate fixes:
+
+1. **Some generators have a hard floor above your target.** Udio's creation-time options are only 32 seconds or 2:10 — nothing in between, and nothing shorter, without a separate "Extend" step afterward. Lyria 3.5's documented range starts at 30 seconds.
+2. **Duration is usually a UI/API parameter, not something the prompt text controls.** Writing "length: 20 seconds" in the prompt paragraph does not reliably set the output length — the generator needs the actual duration control (a slider, a dropdown, an API field) set explicitly. Text-only duration requests routinely get ignored, and the generator falls back to its own default, which tends to be much longer (in practice, a 2:49–2:59 track came back from a Flow Music session that only stated a duration in prose, never used a length control).
+
+| Generator | Duration mechanism | Practical floor for a direct short generation |
+|---|---|---|
+| Google Lyria / Flow Music | UI/API duration control (Lyria 3.5: 30s-3min range) | ~30s if the control is actually set; unset defaults to a full song length |
+| Udio | Fixed creation-time presets: 32s or 2:10 | 32s, and only exactly 32s — nothing shorter, nothing in between |
+| Suno (v5.5+) | Duration slider, 10s-6min in 5s steps | 10s, but only if the slider is used — pre-slider or slider-unset behavior defaults toward a full song and frequently undershoots or overshoots an unstated target |
+| ElevenLabs Music API | `music_length_ms` parameter, 3s-10min, or `Auto` | 3s technically, but the API's own docs recommend generating in ~30s sections and building up rather than requesting one long or very short span directly |
+| Mubert, Soundraw | Purpose-built for loop/background music; explicit length selection is the normal path | Reliable at whatever short length you need — this is their actual design target, unlike the song generators above |
+
+**Default posture: plan for "generate a full-length track, then extract or trim your section" rather than assuming a song generator will hand you a tight loop.** Two ways to act on this:
+
+- If the target generator exposes an explicit duration control (slider, dropdown, API field), set it there — don't rely on prompt-text duration language to do that job. Prompt text can still state the target as a secondary hint, but the control is what actually works.
+- If it doesn't, or you're not sure it will be respected, write the prompt assuming a longer, structured output (e.g. verse/hook, per `scene-to-cue-system.md`'s scene-to-cue map or the default arc) and plan a trim/extract pass afterward to pull your actual short segment out — usually the opening hook, since that's the section already written to "start immediately." Say so explicitly in the project's `MUSIC-PROMPT.md` so the trim step isn't a surprise later in the workflow.
+
+Either way: always measure the real output length before treating a duration request as satisfied. Don't assume the prompt or even the UI control produced exactly what was asked — generators commonly land close but not exact.
 
 ## Chat-session tools can silently turn "new candidate" into "edit"
 
@@ -46,5 +64,9 @@ Confirm commercial-use terms in the generator's own terms of service before subm
 ## Sources
 
 - Google Cloud — official Lyria prompting guide (structure, "instrumental" keyword convention, timestamp prompting, documented track-length tiers). Verify current specifics against the live docs before relying on exact numbers — model versions and limits change.
-- Udio Help Center — official guidance-tags documentation (negative-prompt syntax).
-- Community consensus drawn from AI-music-generation forums and prompt-sharing threads (instrument count, genre specificity, regeneration-rate observations). Treat as directional, not authoritative — it's aggregated secondhand, not a controlled study.
+- Google DeepMind / Google blog — Lyria 3.5 launch coverage confirming the 30-second-to-3-minute duration range in Flow Music (2026-07).
+- Udio Help Center — "Create Your First Song" (official; confirms the 32s/2:10 creation-time presets and that other lengths require the Extend feature) and guidance-tags documentation (negative-prompt syntax).
+- Suno release notes / Duration Slider documentation — confirms the 2026-07-20 introduction of explicit 10s-6min duration control, and that pre-slider behavior did not reliably hit an unstated target length.
+- ElevenLabs — official Eleven Music documentation (`music_length_ms` parameter range and the platform's own recommendation to build tracks from ~30s sections rather than requesting one long span directly).
+- This plugin's own prior session logs — direct observation that a Flow Music generation with a duration stated only in prompt prose (not a UI/API control) returned a 2:49-2:59 length track instead of the ~20s requested.
+- Community consensus drawn from AI-music-generation forums and prompt-sharing threads (instrument count, genre specificity, regeneration-rate observations, Mubert/Soundraw duration-control behavior). Treat as directional, not authoritative — it's aggregated secondhand, not a controlled study.

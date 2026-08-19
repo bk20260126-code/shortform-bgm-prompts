@@ -16,6 +16,7 @@ Each row is a failure this method exists to prevent. When a generated track disa
 | Music-cognition research inflated into a reach claim | Tempo/syncopation/groove research → assumed Instagram/TikTok reach increase | Keep a claim-boundary table per source; anything not directly demonstrated is `[INFERENCE]`, not fact |
 | Lesson lost between projects | Prompt only ever existed in chat | Keep the project's `MUSIC-PROMPT.md` (from `assets/music-prompt-template.md`) plus a shared mutation log updated together |
 | Rights status unknown at generation time | Generator/plan/region terms never checked | Confirm generator, plan, and commercial-use status before the actual generation call — not after |
+| A 20-second track request comes back 2-3 minutes long | Duration stated only in prompt text, not set via the generator's actual duration control; most song generators default toward a full song | Check `generator_duration_control` before writing the final prompt; set the real control if one exists, otherwise plan a trim/extract pass — see `prompt-best-practices.md` |
 
 ## Scene-to-cue conversion
 

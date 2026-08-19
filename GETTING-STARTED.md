@@ -44,19 +44,21 @@ Pick one (all have a free tier as of this writing — check current pricing on t
 - **Udio** — [udio.com](https://udio.com)
 - **Google Flow Music (Lyria)** — [labs.google/fx/tools/flow](https://labs.google)
 
-Paste your filled-in paragraph into the text box where it asks what music you want, and click Create / Generate.
+Look for a length/duration option on the page — a slider, a dropdown, or preset buttons like "32 seconds" or "2 minutes" — separate from the text box, before you click Create. **Set the length there if you can.** Typing a length inside your paragraph (like "about 20 seconds") is a weaker signal that these tools often ignore; the actual length control, when the site has one, is what really works. If there's no such control, expect a full-length song back (often 1-3 minutes) rather than a short clip — that's normal, not a mistake, and Step 4 below covers what to do about it.
+
+Paste your filled-in paragraph into the text box where it asks what music you want, click any length option that's there, and click Create / Generate.
 
 ## Step 4 — Listen and decide
 
 - **Good enough?** Download it and use it.
 - **Close, but one thing is off?** Change only that one thing in your text (e.g. only the BPM number, or only the mood words) and generate again. Changing several things at once makes it hard to tell what helped.
-- **The length is wrong?** Some AI music tools ignore the length you asked for. If your download is longer than you need, most of these websites have a trim/edit option after generation — use that rather than re-generating from scratch.
+- **It came back much longer than you asked for?** This is normal, not a mistake — most of these tools are really built to make full songs, and a handful (Udio, for one) won't even let you pick anything shorter than about 30 seconds at creation time. Use the site's trim/edit tool afterward and cut out the part you actually need — usually the very beginning, since that's the part your prompt already told it to start strong on. Don't re-generate from scratch hoping a shorter version appears; it usually won't.
 
 ## A few things that trip people up
 
 - **"It added singing even though I didn't want any."** Make sure the word "Instrumental." is the very first word of your prompt.
 - **"It sounds nothing like what I described."** Your genre word was probably too vague. "Music" or "background music" gives the AI nothing to go on — try naming an actual style, like "lo-fi hip-hop," "cinematic orchestral," or "synth-pop."
-- **"The download isn't the length I asked for."** This is common and not a mistake on your part — see Step 4 above.
+- **"The download isn't the length I asked for."** Very common, and not a mistake on your part — see Step 4 above. Check for a length control on the site before you generate; if there isn't one, plan on trimming.
 - **"Can I use this commercially (in an ad, a business video, etc.)?"** Check the specific AI music website's terms before you publish anything — free plans on some of these tools restrict commercial use. This repo doesn't grant or affect those rights.
 
 ## Want more control?
