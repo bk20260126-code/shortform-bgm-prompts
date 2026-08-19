@@ -4,6 +4,8 @@ A Claude Code / Claude plugin that turns a short-form vertical video's scene tim
 
 Built for Instagram Reels, YouTube Shorts, and TikTok. Works with any AI music generator (Suno, Udio, Google Lyria / Flow Music, or others) — it produces the prompt and the QA discipline; you paste the prompt into whatever generator you use.
 
+> Free and open source, from the team behind [NeoFun](https://geekus.kr/neofun) — AI operating systems for small teams and creators.
+
 > **Not a developer, or don't want to install anything?** → **[GETTING-STARTED.md](GETTING-STARTED.md)** is a 5-minute, no-coding guide: fill in a short template, paste it into an AI music website, done. Everything below this point is the fuller version for Claude / Claude Code users.
 
 ## What it does
@@ -51,3 +53,7 @@ No MCP servers, agents, or hooks — this is a pure knowledge/workflow skill. It
 ## License
 
 MIT
+
+---
+
+Built by the team behind **[NeoFun](https://geekus.kr/neofun)**. If you're building an AI operating system for your own small team or creator business, that's what we do — [geekus.kr/neofun](https://geekus.kr/neofun).
