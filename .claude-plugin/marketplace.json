@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "shortform-bgm-prompts",
+  "owner": {
+    "name": "bk20260126-code",
+    "url": "https://github.com/bk20260126-code"
+  },
+  "description": "Install shortform-bgm-prompts as a Claude plugin.",
+  "plugins": [
+    {
+      "name": "shortform-bgm-prompts",
+      "source": "./",
+      "description": "Turns a short-form video's scene timing into a precise, generator-ready AI music prompt — with a scene-to-cue mapping method, a reusable prompt template, generator-specific prompting best practices, and a listening QA checklist.",
+      "license": "MIT",
+      "keywords": ["music", "bgm", "ai-music-generation", "prompt-engineering", "short-form-video", "reels", "shorts", "tiktok", "suno", "udio", "lyria"]
+    }
+  ]
+}
