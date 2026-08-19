@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Security Report — shortform-bgm-prompts — 2026-08-19</title>
+<style>
+  body { font-family: -apple-system, sans-serif; max-width: 860px; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+  h1, h2 { border-bottom: 1px solid #ddd; padding-bottom: .3rem; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  th, td { border: 1px solid #ddd; padding: .5rem; text-align: left; }
+  th { background: #f5f5f5; }
+  .severity-critical { color: #b91c1c; font-weight: bold; }
+  .severity-high { color: #c2410c; font-weight: bold; }
+  .severity-medium { color: #a16207; font-weight: bold; }
+  .severity-low { color: #4d7c0f; font-weight: bold; }
+  .risk-score { font-size: 2.5rem; font-weight: bold; color: #16a34a; }
+  .stride-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+  .stride-card { border: 1px solid #ddd; border-radius: 8px; padding: .75rem; text-align: center; }
+  .stride-count { font-size: 1.5rem; font-weight: bold; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Security Report — shortform-bgm-prompts</h1>
+  <p>Scan type: full (pre-commit) · Severity threshold: high · Date: 8/19/2026</p>
+</header>
+
+<section id="executive-summary">
+  <h2>Executive summary</h2>
+  <p class="risk-score">0/100 — No Risk</p>
+  <p>Score = min(100, round(log10((0×100)+(0×30)+(0×10)+(0×3)+1)×25)) = 0</p>
+  <table>
+    <tr><th>Severity</th><th>Count</th></tr>
+    <tr><td class="severity-critical">Critical</td><td>0</td></tr>
+    <tr><td class="severity-high">High</td><td>0</td></tr>
+    <tr><td class="severity-medium">Medium</td><td>0</td></tr>
+    <tr><td class="severity-low">Low</td><td>0</td></tr>
+    <tr><th>Total</th><th>0</th></tr>
+  </table>
+</section>
+
+<section id="risk-score">
+  <h2>Risk score</h2>
+  <p>0/100 (No Risk). Critical=0, High=0, Medium=0, Low=0.</p>
+</section>
+
+<section id="scan-coverage">
+  <h2>Scan coverage</h2>
+  <table>
+    <tr><th>Scanner</th><th>Category</th><th>Status</th></tr>
+    <tr><td>gitleaks</td><td>Secrets</td><td>Skipped (not installed, user-approved)</td></tr>
+    <tr><td>semgrep</td><td>SAST</td><td>Skipped (not installed, user-approved)</td></tr>
+    <tr><td>grype</td><td>Dependency/container CVEs</td><td>Skipped (not installed, user-approved)</td></tr>
+    <tr><td>checkov</td><td>IaC</td><td>Skipped (not installed, user-approved)</td></tr>
+    <tr><td>hadolint</td><td>Dockerfile</td><td>Skipped (not installed, user-approved)</td></tr>
+    <tr><td>package-leakage (built-in)</td><td>Publish-artifact leakage</td><td>Passed — 0 findings</td></tr>
+    <tr><td>Manual secret-pattern grep</td><td>Secrets</td><td>Passed — 0 matches</td></tr>
+    <tr><td>Manual brand/identity leak grep</td><td>Internal reference leakage</td><td>Passed — 0 matches</td></tr>
+  </table>
+  <p>Repo contains only Markdown, one JSON manifest, LICENSE, and .gitignore — no code, Dockerfile, IaC, or dependency manifest for the skipped scanners to act on.</p>
+</section>
+
+<section id="stride-analysis">
+  <h2>STRIDE threat analysis</h2>
+  <div class="stride-grid">
+    <div class="stride-card spoofing"><div class="stride-icon">S</div><div class="stride-name">Spoofing</div><div class="stride-count">0</div></div>
+    <div class="stride-card tampering"><div class="stride-icon">T</div><div class="stride-name">Tampering</div><div class="stride-count">0</div></div>
+    <div class="stride-card repudiation"><div class="stride-icon">R</div><div class="stride-name">Repudiation</div><div class="stride-count">0</div></div>
+    <div class="stride-card info-disclosure"><div class="stride-icon">I</div><div class="stride-name">Info Disclosure</div><div class="stride-count">0</div></div>
+    <div class="stride-card denial-of-service"><div class="stride-icon">D</div><div class="stride-name">Denial of Service</div><div class="stride-count">0</div></div>
+    <div class="stride-card elevation"><div class="stride-icon">E</div><div class="stride-name">Elevation</div><div class="stride-count">0</div></div>
+  </div>
+</section>
+
+<section id="findings-secrets"><h2>Secrets findings</h2><p>None.</p></section>
+<section id="findings-dependencies"><h2>Dependency findings</h2><p>None — no dependency manifest present.</p></section>
+<section id="findings-sast"><h2>SAST findings</h2><p>None — no application code present.</p></section>
+<section id="findings-iac"><h2>IaC findings</h2><p>None — no IaC files present.</p></section>
+<section id="findings-container"><h2>Container findings</h2><p>None — no Dockerfile present.</p></section>
+<section id="findings-sonarqube"><h2>Quality gate</h2><p>Not run.</p></section>
+<section id="quick-wins"><h2>Quick wins</h2><p>None needed.</p></section>
+<section id="fix-this-sprint"><h2>Fix this sprint</h2><p>None needed.</p></section>
+<section id="plan-next-quarter"><h2>Plan next quarter</h2><p>None needed.</p></section>
+
+</body>
+</html>

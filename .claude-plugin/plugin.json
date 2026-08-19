@@ -1,0 +1,22 @@
+{
+  "name": "shortform-bgm-prompts",
+  "version": "0.1.0",
+  "description": "Turns a short-form video's scene timing into a precise, generator-ready AI music prompt — with a scene-to-cue mapping method, a reusable prompt template, generator-specific prompting best practices, and a listening QA checklist.",
+  "author": {
+    "name": "shortform-bgm-prompts contributors"
+  },
+  "keywords": [
+    "music",
+    "bgm",
+    "ai-music-generation",
+    "prompt-engineering",
+    "short-form-video",
+    "reels",
+    "shorts",
+    "tiktok",
+    "suno",
+    "udio",
+    "lyria"
+  ],
+  "license": "MIT"
+}
